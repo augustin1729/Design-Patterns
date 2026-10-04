@@ -54,12 +54,34 @@ namespace SimUDuck
 
     // Now here the Duck class now can be declared in the following manner. 
 
+    // public class Duck
+    // {
+    //     protected IFlyBehaviour? flyBehaviour;
+
+    //     public void FlyBehaviour(){
+    //         flyBehaviour?.Fly();
+    //     }
+
+    //     public virtual void Display()
+    //     {
+    //         Console.WriteLine("display");
+    //     }
+    // }
+
+    // Now let's see how we can set the behaviour during the runtime 
+
     public class Duck
     {
         protected IFlyBehaviour? flyBehaviour;
 
-        public void FlyBehaviour(){
+        public void FlyBehaviour()
+        {
             flyBehaviour?.Fly();
+        }
+
+        public void setFlyBehaviour(IFlyBehaviour flyBehaviour)
+        {
+            this.flyBehaviour = flyBehaviour;
         }
 
         public virtual void Display()
@@ -121,6 +143,13 @@ namespace SimUDuck
             Duck mallard = new MallardDuck();
             mallard.Display();
             mallard.FlyBehaviour();
+
+            Duck RubberDucky = new RubberDuck();
+            RubberDucky.Display();
+            RubberDucky.FlyBehaviour();
+
+            RubberDucky.setFlyBehaviour(new FlyWithWings());
+            RubberDucky.FlyBehaviour();
         }
     }
 }
